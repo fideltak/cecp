@@ -12,7 +12,8 @@ import (
 )
 
 var (
-	server *Server
+	server  *Server
+	version string = "dev"
 )
 
 type Server struct {
@@ -155,6 +156,7 @@ func init() {
 }
 
 func main() {
+	log.Printf("CloudEvents Proxy version: %s\n", version)
 	ctx := context.Background()
 	err := server.Run(ctx)
 	if err != nil {

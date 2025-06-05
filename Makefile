@@ -22,3 +22,7 @@ build:
 	@GOOS=linux GOARCH=amd64 CGO_ENABLED=0 $(GOBUILD) -o $(BUILD_PATH)$(BUILD_BASE_NAME) -ldflags "-X main.version=$(CURRENT_VERSION)" $(BUILD_TARGET)
 	@tar zcvf $(BUILD_PATH)$(BUILD_BASE_NAME)-$(CURRENT_VERSION)-linux-amd64.tar.gz -C $(BUILD_PATH) $(BUILD_BASE_NAME)
 	@rm $(BUILD_PATH)$(BUILD_BASE_NAME)
+
+docker:
+	@echo Version:$(CURRENT_VERSION)
+	@docker buildx build --platform=linux/amd64 -t docker.io/fideltak/cecp:$(CURRENT_VERSION) .
