@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cecp
+spec:
+  selector:
+    app: cecp
+  ports:
+  - name: proxy
+    port: 8080
+    targetPort: 8080
+  - name: exporter
+    port: 9100
+    targetPort: 9100
+  type: ClusterIP
