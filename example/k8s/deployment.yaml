@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cecp
+  labels:
+    app: cecp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cecp
+  template:
+    metadata:
+      labels:
+        app: cecp
+    spec:
+      containers:
+      - name: cecp
+        image: docker.io/fideltak/cecp:latest
+        ports:
+        - containerPort: 8080
+        - containerPort: 9100
+        env:
+        - name: TARGET_URL
+          value: "http://fluent-bit:8080"
